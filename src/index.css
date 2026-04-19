@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+}
+
+@layer components {
+  #root {
+    @apply text-gray-800;
+  }
+}
