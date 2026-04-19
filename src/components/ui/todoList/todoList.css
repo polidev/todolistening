@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@layer components {
+  .todo-list {
+    @apply w-auto h-auto mx-2 p-2 flex flex-col gap-2 rounded-2xl shadow-md;
+  }
+
+  .todo-list-header {
+    @apply w-full h-auto flex items-center;
+
+    & img {
+      @apply mr-4 p-1 rounded-xl bg-orange-400;
+    }
+
+    & div {
+      @apply justify-self-center;
+
+      & h4 {
+        @apply text-2xl font-bold;
+      }
+
+      & p {
+        @apply text-gray-600 font-semibold;
+      }
+    }
+
+    & button {
+      @apply w-12 h-12 ml-auto mr-4 rounded-full bg-orange-400 p-1 text-white font-bold;
+    }
+  }
+
+  .todo-list-container {
+    @apply w-full h-auto p-2 flex flex-col gap-2;
+    @apply md:p-4;
+  }
+}
