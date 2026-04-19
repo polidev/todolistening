@@ -1,7 +1,9 @@
+import ListsSection from "../components/ui/listsSection/listsSection.tsx";
+
 export default function Home() {
   return (
-    <div>
-      <h1>Home</h1>
-    </div>
+    <>
+      <ListsSection />
+    </>
   );
 }
