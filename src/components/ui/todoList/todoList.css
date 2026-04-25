@@ -2,14 +2,14 @@
 
 @layer components {
   .todo-list {
-    @apply w-auto h-auto mx-2 p-2 flex flex-col gap-2 rounded-2xl shadow-md;
+    @apply w-auto h-auto p-2 flex flex-col gap-2 rounded-2xl shadow-md;
   }
 
-  .todo-list-header {
-    @apply w-full h-auto flex items-center;
+  .todo-header {
+    @apply w-full h-auto mb-4 flex items-center;
 
     & img {
-      @apply mr-4 p-1 rounded-xl bg-orange-400;
+      @apply mr-4 p-1 rounded-2xl bg-orange-400;
     }
 
     & div {
@@ -25,12 +25,11 @@
     }
 
     & button {
-      @apply w-12 h-12 ml-auto mr-4 rounded-full bg-orange-400 p-1 text-white font-bold;
+      @apply w-12 h-12 ml-auto rounded-full bg-orange-400 p-1 text-white font-bold;
     }
   }
 
-  .todo-list-container {
-    @apply w-full h-auto p-2 flex flex-col gap-2;
-    @apply md:p-4;
+  .todo-tasks {
+    @apply w-full h-auto flex flex-col gap-2;
   }
 }
