@@ -1,7 +1,10 @@
-import "./listsSection.css";
+import useCheckLocalStorage from "../../../hooks/useCheckLocalStorage.tsx";
 import TodoList from "../todoList/todoList.tsx";
+import "./listsSection.css";
 
 export default function ListsSection() {
+  const { taskList, buyList, loading, error } = useCheckLocalStorage();
+
   return (
     <section className="lists-section">
       <header>
@@ -9,7 +12,17 @@ export default function ListsSection() {
         <p>Motivational quotes will appear here.</p>
       </header>
 
-      <TodoList />
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
+
+      {!loading && !error && taskList && (
+        <TodoList
+          key={taskList.id}
+          id={taskList.id}
+          title={taskList.title}
+          tasks={taskList.tasks}
+        />
+      )}
     </section>
   );
 }
