@@ -1,28 +1,38 @@
 import TodoItem from "../../layout/todoItem/todoItem.tsx";
 import "./todoList.css";
 
-import workIcon from "/src/assets/icons8-briefcase.svg";
+interface Task {
+  id: string;
+  quantity?: number;
+  title: string;
+  completed: boolean;
+}
 
-export default function TodoList() {
+interface TaskList {
+  id: string;
+  title: string;
+  tasks: Task[];
+}
+
+export default function TodoList({ title, tasks }: TaskList) {
   return (
     <>
       <section className="todo-list">
         <aside className="todo-header">
-          <img src={workIcon} alt="Work icon" />
+          <span>{title.slice(0, 1).toUpperCase()}</span>
 
           <div>
-            <h4>Work</h4>
-            <p>tasks left: 5</p>
+            <h4>{title}</h4>
+            <p>tasks left: {tasks.length}</p>
           </div>
 
           <button>+</button>
         </aside>
 
         <aside className="todo-tasks">
-          <TodoItem />
-          <TodoItem />
-          <TodoItem />
-          <TodoItem />
+          {tasks.map((task) => (
+            <TodoItem key={task.id} id={task.id} title={task.title} />
+          ))}
         </aside>
       </section>
     </>

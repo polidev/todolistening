@@ -8,12 +8,12 @@
   .todo-header {
     @apply w-full h-auto mb-4 flex items-center;
 
-    & img {
-      @apply mr-4 p-1 rounded-2xl bg-orange-400;
+    & span {
+      @apply w-12 h-12 mr-4 p-1 flex justify-center items-center text-4xl font-extrabold text-white rounded-2xl bg-orange-400;
     }
 
     & div {
-      @apply justify-self-center;
+      @apply text-center;
 
       & h4 {
         @apply text-2xl font-bold;

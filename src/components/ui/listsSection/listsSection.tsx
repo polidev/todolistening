@@ -5,9 +5,6 @@ import "./listsSection.css";
 export default function ListsSection() {
   const { taskList, buyList, loading, error } = useCheckLocalStorage();
 
-  console.log(taskList);
-  console.log(buyList);
-
   return (
     <section className="lists-section">
       <header>
@@ -18,7 +15,14 @@ export default function ListsSection() {
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
 
-      <TodoList />
+      {!loading && !error && taskList && (
+        <TodoList
+          key={taskList.id}
+          id={taskList.id}
+          title={taskList.title}
+          tasks={taskList.tasks}
+        />
+      )}
     </section>
   );
 }
