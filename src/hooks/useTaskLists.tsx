@@ -13,7 +13,7 @@ interface TaskList {
   tasks: Task[];
 }
 
-export default function useCheckLocalStorage() {
+export default function useTaskLists() {
   const defaultListId = useId();
   const defaultTaskId = useId();
   const buyListId = useId();
