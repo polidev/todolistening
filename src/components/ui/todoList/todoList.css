@@ -25,11 +25,27 @@
     }
 
     & button {
-      @apply w-12 h-12 ml-auto rounded-full bg-orange-400 p-1 text-white font-bold;
+      @apply w-12 h-12 ml-auto rounded-full bg-orange-400 p-1 text-white font-bold cursor-pointer;
     }
   }
 
   .todo-tasks {
     @apply w-full h-auto flex flex-col gap-2;
+  }
+
+  .taskDialog {
+    @apply w-full max-h-1/2 m-auto p-2 rounded-2xl shadow-md;
+
+    &[open] {
+      @apply flex flex-col gap-4 justify-center items-center;
+    }
+
+    & textarea {
+      @apply w-full field-sizing-content focus:outline-none bg-gray-50 rounded-2xl p-2 resize-none caret-cyan-800;
+    }
+
+    & button {
+      @apply w-full rounded-2xl bg-orange-400 p-2 text-white cursor-pointer;
+    }
   }
 }

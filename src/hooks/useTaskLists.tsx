@@ -13,7 +13,7 @@ interface TaskList {
   tasks: Task[];
 }
 
-export default function useCheckLocalStorage() {
+export default function useTaskLists() {
   const defaultListId = useId();
   const defaultTaskId = useId();
   const buyListId = useId();
@@ -58,21 +58,23 @@ export default function useCheckLocalStorage() {
         const initialTaskList = localStorage.getItem("defaultTaskList");
         const initialBuyList = localStorage.getItem("defaultBuyList");
 
-        if (!initialTaskList || !initialBuyList) {
+        if (!initialTaskList) {
           localStorage.setItem(
             "defaultTaskList",
             JSON.stringify(defaultTaskList.current),
           );
+          setTaskList(defaultTaskList.current);
+        } else {
+          setTaskList(JSON.parse(initialTaskList));
+        }
 
+        if (!initialBuyList) {
           localStorage.setItem(
             "defaultBuyList",
             JSON.stringify(defaultBuyList.current),
           );
-
-          setTaskList(defaultTaskList.current);
           setBuyList(defaultBuyList.current);
         } else {
-          setTaskList(JSON.parse(initialTaskList));
           setBuyList(JSON.parse(initialBuyList));
         }
       } catch (error) {
@@ -91,5 +93,17 @@ export default function useCheckLocalStorage() {
     loadLocalStorage();
   }, []);
 
-  return { taskList, setTaskList, buyList, setBuyList, loading, error };
+  function addTask(text: string) {
+    console.log("Adding task:", text);
+  }
+
+  return {
+    taskList,
+    setTaskList,
+    buyList,
+    setBuyList,
+    loading,
+    error,
+    addTask,
+  };
 }

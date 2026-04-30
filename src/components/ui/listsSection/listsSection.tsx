@@ -1,9 +1,9 @@
-import useCheckLocalStorage from "../../../hooks/useCheckLocalStorage.tsx";
+import useTaskLists from "../../../hooks/useTaskLists.tsx";
 import TodoList from "../todoList/todoList.tsx";
 import "./listsSection.css";
 
 export default function ListsSection() {
-  const { taskList, buyList, loading, error } = useCheckLocalStorage();
+  const { taskList, buyList, loading, error } = useTaskLists();
 
   return (
     <section className="lists-section">

@@ -1,4 +1,6 @@
+import { useRef, useState } from "react";
 import TodoItem from "../../layout/todoItem/todoItem.tsx";
+import useTaskLists from "../../../hooks/useTaskLists.tsx";
 import "./todoList.css";
 
 interface Task {
@@ -15,8 +17,36 @@ interface TaskList {
 }
 
 export default function TodoList({ title, tasks }: TaskList) {
+  const [dialogText, setDialogText] = useState("");
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  const { addTask } = useTaskLists();
+
+  const handleAddTask = () => {
+    addTask(dialogText);
+    dialogRef.current!.close();
+  };
+
   return (
     <>
+      <dialog ref={dialogRef} closedby="any" className="taskDialog">
+        <textarea
+          name="task"
+          id="taskInput"
+          value={dialogText}
+          onChange={(e) => setDialogText(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              handleAddTask();
+            }
+          }}
+        />
+        <form method="dialog">
+          <button onClick={handleAddTask}>Guardar</button>
+        </form>
+      </dialog>
+
       <section className="todo-list">
         <aside className="todo-header">
           <span>{title.slice(0, 1).toUpperCase()}</span>
@@ -26,7 +56,7 @@ export default function TodoList({ title, tasks }: TaskList) {
             <p>tasks left: {tasks.length}</p>
           </div>
 
-          <button>+</button>
+          <button onClick={() => dialogRef.current?.showModal()}>+</button>
         </aside>
 
         <aside className="todo-tasks">
