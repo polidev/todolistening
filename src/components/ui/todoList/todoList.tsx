@@ -23,10 +23,8 @@ export default function TodoList({ title, tasks }: TaskList) {
   const { addTask } = useTaskLists();
 
   const handleAddTask = () => {
-    addTask("Agregué una nueva tarea");
-    console.log(dialogText);
-    console.log("dialog ref:", dialogRef.current); // ¿es null?
-    dialogRef.current?.close();
+    addTask(dialogText);
+    dialogRef.current!.close();
   };
 
   return (
@@ -37,7 +35,12 @@ export default function TodoList({ title, tasks }: TaskList) {
           id="taskInput"
           value={dialogText}
           onChange={(e) => setDialogText(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleAddTask()}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              handleAddTask();
+            }
+          }}
         />
         <form method="dialog">
           <button onClick={handleAddTask}>Guardar</button>
