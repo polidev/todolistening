@@ -1,4 +1,5 @@
 import { useState, useEffect, useId, useRef } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 interface Task {
   id: string;
@@ -94,7 +95,23 @@ export default function useTaskLists() {
   }, []);
 
   function addTask(text: string) {
+    if (!taskList || !text.trim()) return;
+
     console.log("Adding task:", text);
+
+    const newTask: Task = {
+      id: uuidv4(),
+      title: text.trim(),
+      completed: false,
+    };
+
+    const updatedTaskList = {
+      ...taskList,
+      tasks: [...taskList.tasks, newTask],
+    };
+
+    setTaskList(updatedTaskList);
+    localStorage.setItem("defaultTaskList", JSON.stringify(updatedTaskList));
   }
 
   return {
