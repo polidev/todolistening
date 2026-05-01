@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import TodoItem from "../../layout/todoItem/todoItem.tsx";
-import useTaskLists from "../../../hooks/useTaskLists.tsx";
 import "./todoList.css";
 
 interface Task {
@@ -14,13 +13,12 @@ interface TaskList {
   id: string;
   title: string;
   tasks: Task[];
+  addTask: (text: string) => void;
 }
 
-export default function TodoList({ title, tasks }: TaskList) {
+export default function TodoList({ title, tasks, addTask }: TaskList) {
   const [dialogText, setDialogText] = useState("");
   const dialogRef = useRef<HTMLDialogElement>(null);
-
-  const { addTask } = useTaskLists();
 
   const handleAddTask = () => {
     addTask(dialogText);

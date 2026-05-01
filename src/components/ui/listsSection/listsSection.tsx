@@ -3,7 +3,7 @@ import TodoList from "../todoList/todoList.tsx";
 import "./listsSection.css";
 
 export default function ListsSection() {
-  const { taskList, buyList, loading, error } = useTaskLists();
+  const { taskList, buyList, loading, error, addTask } = useTaskLists();
 
   return (
     <section className="lists-section">
@@ -21,6 +21,7 @@ export default function ListsSection() {
           id={taskList.id}
           title={taskList.title}
           tasks={taskList.tasks}
+          addTask={addTask}
         />
       )}
     </section>
