@@ -114,6 +114,23 @@ export default function useTaskLists() {
     localStorage.setItem("defaultTaskList", JSON.stringify(updatedTaskList));
   }
 
+  function toggleTask(listKey: "defaultTaskList" | "defaultBuyList", taskId: string) {
+    const list = listKey === "defaultTaskList" ? taskList : buyList;
+    const setList = listKey === "defaultTaskList" ? setTaskList : setBuyList;
+
+    if (!list) return;
+
+    const updatedList = {
+      ...list,
+      tasks: list.tasks.map((task) =>
+        task.id === taskId ? { ...task, completed: !task.completed } : task,
+      ),
+    };
+
+    setList(updatedList);
+    localStorage.setItem(listKey, JSON.stringify(updatedList));
+  }
+
   return {
     taskList,
     setTaskList,
@@ -122,5 +139,6 @@ export default function useTaskLists() {
     loading,
     error,
     addTask,
+    toggleTask,
   };
 }

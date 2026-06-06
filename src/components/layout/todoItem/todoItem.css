@@ -10,6 +10,10 @@
 
     & label {
       @apply w-auto h-auto ml-2 text-wrap wrap-break-word;
+
+      &.completed {
+        @apply line-through opacity-60;
+      }
     }
   }
 }

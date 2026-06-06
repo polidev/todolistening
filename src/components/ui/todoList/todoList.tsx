@@ -14,9 +14,10 @@ interface TaskList {
   title: string;
   tasks: Task[];
   addTask: (text: string) => void;
+  toggleTask: (taskId: string) => void;
 }
 
-export default function TodoList({ title, tasks, addTask }: TaskList) {
+export default function TodoList({ title, tasks, addTask, toggleTask }: TaskList) {
   const [dialogText, setDialogText] = useState("");
   const dialogRef = useRef<HTMLDialogElement>(null);
 
@@ -59,7 +60,7 @@ export default function TodoList({ title, tasks, addTask }: TaskList) {
 
         <aside className="todo-tasks">
           {tasks.map((task) => (
-            <TodoItem key={task.id} id={task.id} title={task.title} />
+            <TodoItem key={task.id} id={task.id} title={task.title} completed={task.completed} onToggle={toggleTask} />
           ))}
         </aside>
       </section>
